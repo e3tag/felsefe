@@ -1,0 +1,296 @@
+
+
+
+
+
+/* Genel Ayarlar */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; background-color: #fdfdfd; }
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+.container { max-width: 1100px; margin: auto; padding: 80px 20px; text-align: center; }
+.bg-light { background-color: #f4f1ea; }
+
+/* Scroll Progress Bar */
+#scrollProgress {
+    position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+    background: linear-gradient(90deg, #c5a059, #967a42);
+    z-index: 9999; transition: width 0.1s ease-out;
+}
+
+/* Navigasyon */
+nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 50px; background: #1a1a1a; color: white;
+    position: fixed; width: 100%; top: 0; z-index: 1000;
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #c5a059; }
+nav ul { display: flex; list-style: none; }
+nav ul li a { color: white; text-decoration: none; margin-left: 30px; transition: 0.3s; }
+nav ul li a:hover { color: #c5a059; }
+
+/* Hero */
+header {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    display: flex; justify-content: center; align-items: center; color: white; text-align: center;
+}
+.hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; }
+.btn {
+    display: inline-block; padding: 15px 35px; background: #c5a059; color: white;
+    text-decoration: none; border-radius: 5px; transition: 0.3s; font-weight: 600;
+}
+.btn:hover { background: #967a42; transform: translateY(-2px); }
+
+/* Section Title */
+.section-title { font-size: 2.5rem; margin-bottom: 50px; position: relative; padding-bottom: 15px; }
+.section-title::after {
+    content: ''; width: 60px; height: 4px; background: #c5a059;
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+}
+
+/* Grid ve Cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+.card {
+    background: white; padding: 35px 25px; border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.3s ease; border-top: 4px solid #c5a059;
+}
+.card:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+
+/* Filozoflar Grid ve Timeline */
+.phil-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 50px; }
+.phil-item {
+    background: rgba(255,255,255,0.95); border-left: 6px solid #c5a059; padding: 30px;
+    text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 0 12px 12px 0;
+    transition: 0.3s;
+}
+.phil-item:hover { transform: translateX(10px); filter: brightness(1.05); }
+.timeline { max-width: 1000px; margin: 0 auto; }
+.long-text { max-width: 850px; margin: 0 auto; text-align: justify; font-size: 1.15rem; color: #555; line-height: 1.9; }
+
+/* Quote Box (Dinamik Alan) */
+.quote-box { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: white; padding: 120px 20px; text-align: center; }
+#quote-display { min-height: 120px; margin: 40px 0; position: relative; }
+#quote-display::before {
+    content: '"'; position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+    font-size: 8rem; color: rgba(197, 160, 89, 0.15); font-family: 'Playfair Display', serif;
+}
+#quote-text { font-size: 1.8rem; font-style: italic; transition: all 0.5s ease; }
+#quote-author { display: block; margin-top: 15px; color: #c5a059; font-weight: 600; font-size: 1.1rem; }
+#new-quote-btn {
+    padding: 15px 35px; background: transparent; border: 2px solid #c5a059;
+    color: #c5a059; cursor: pointer; font-size: 1.1rem; font-weight: 600; border-radius: 50px; transition: 0.3s;
+}
+#new-quote-btn:hover { background: #c5a059; color: white; box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4); }
+
+footer { background: #111; color: #ccc; padding: 50px 20px 30px; text-align: center; }
+footer p:first-child { font-weight: 600; color: #c5a059; margin-bottom: 10px; }
+
+/* Responsive ve Kaydırma Ayarı */
+@media (max-width: 768px) {
+    nav { flex-direction: column; padding: 15px 20px; gap: 15px; }
+    nav ul { flex-wrap: wrap; justify-content: center; }
+    nav ul li a { margin: 0 10px; font-size: 0.95rem; }
+    .hero-content h1 { font-size: 2.2rem; }
+}
+section { scroll-margin-top: 100px; }
+
+
+
+
+
+
+/* Karanlık Mod Değiştirici Buton Stili */
+.mode-switch {
+    margin-left: 20px;
+}
+
+#dark-mode-toggle {
+    background: #c5a059;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+/* Karanlık Mod Renk Tanımlamaları */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .bg-light {
+    background-color: #1d1d1d;
+}
+
+body.dark-mode .card, 
+body.dark-mode .phil-item {
+    background-color: #252525;
+    color: #e0e0e0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .card h3, 
+body.dark-mode .phil-item h4 {
+    color: #c5a059;
+}
+
+body.dark-mode .long-text {
+    color: #bbb;
+}
+
+body.dark-mode section {
+    border-bottom: 1px solid #333;
+}
+
+/* Filozof Resim Ayarları */
+.phil-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Yuvarlak yapar */
+    object-fit: cover; /* Resmi bozmadan sığdırır */
+    margin-bottom: 20px;
+    border: 3px solid #c5a059;
+    filter: grayscale(100%); /* Başlangıçta siyah-beyaz */
+    transition: 0.5s ease;
+}
+
+.phil-item:hover .phil-img {
+    filter: grayscale(0%); /* Üzerine gelince renklenir */
+    transform: scale(1.1); /* Hafif büyür */
+}
+
+/* Kartın içindeki metinleri resme göre hizala */
+.phil-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Resim ve metni ortalar */
+    text-align: center;
+}
+
+
+/* --- Sanat Galerisi Özel Stilleri --- */
+.art-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    height: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    background: #000; /* Resim yüklenirken arkada siyah dursun */
+}
+
+.art-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+    display: block;
+}
+
+.art-info {
+    position: absolute;
+    bottom: -100%; /* Başlangıçta aşağıda gizli */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 26, 26, 0.92); /* Hafif şeffaf koyu arka plan */
+    color: white;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.5s ease;
+}
+
+/* Mouse ile üzerine gelince olacaklar */
+.art-card:hover .art-info {
+    bottom: 0; /* Bilgiyi yukarı çıkarır */
+}
+
+.art-card:hover img {
+    transform: scale(1.1); /* Resmi hafif büyütür */
+    opacity: 0.4; /* Yazının okunması için resmi karartır */
+}
+
+.art-info h3 {
+    color: #c5a059; /* Başlık senin temanın altın rengi */
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.art-info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 5px;
+}
+
+.art-info strong {
+    color: #eee;
+    display: block;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+/* Karanlık Mod Uyumu */
+body.dark-mode .art-card {
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+/* Mobil cihazlar için yükseklik ayarı */
+@media (max-width: 768px) {
+    .art-card {
+        height: 300px;
+    }
+}
+
+
+/* Navigasyon yazı boyutu ayarı (Çok link olduğu için sığmayabilir) */
+nav ul li a {
+    font-size: 0.85rem; /* Biraz küçülttüm ki hepsi yan yana sığsın */
+    margin-left: 15px;
+}
+
+/* Galeri Kart Stilleri */
+.art-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    height: 350px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.art-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.art-info {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    transition: 0.5s;
+    text-align: center;
+}
+
+.art-card:hover .art-info {
+    bottom: 0;
+}
+
+.art-card:hover img {
+    transform: scale(1.1);
+}
